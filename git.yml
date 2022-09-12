@@ -1,0 +1,11 @@
+---
+- name: git install 
+  hosts: all
+  become: true
+  tasks:
+    - name: Install git 
+      ansible.builtin.apt:
+        name:
+          - git      
+        state: latest
+        update_cache: true
