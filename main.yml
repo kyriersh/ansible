@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+    
+- name: Include a play update&upgrade.yml
+  ansible.builtin.import_playbook: update&upgrade.yml
+
+- name: Set up git.yml
+  ansible.builtin.import_playbook: git.yml
+ 
