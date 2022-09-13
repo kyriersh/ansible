@@ -1,0 +1,8 @@
+---
+- name: qwerty
+  hosts: all
+  become: true
+ 
+  roles:
+    - role: nginxinc.nginx     
+  
