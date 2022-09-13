@@ -1,0 +1,57 @@
+---
+- hosts: all
+  tasks:
+
+  - name: create jaime user
+    ansible.builtin.user:
+      name: jaime
+      state: present
+      groups: users
+
+  - name: create sansa user
+    ansible.builtin.user:
+      name: sansa
+      state: present
+      groups: users
+        
+  - name: create robert user
+    ansible.builtin.user:
+      name: robert
+      state: present
+      groups: users
+
+  - name: update gitconfig jaime
+    ansible.builtin.copy:
+      src: files/jaime/.gitconfig
+      dest: /home/jaime/.gitconfig
+
+  - name: update gitconfig sansa 
+    ansible.builtin.copy:
+      src: files/sansa/.gitconfig
+      dest: /home/sansa/.gitconfig
+
+  - name: update gitconfig robert
+    ansible.builtin.copy:
+      src: files/robert/.gitconfig
+      dest: /home/robert/.gitconfig
+
+  - name: add ssh key jaime
+    authorized_key:
+      user: jaime
+      state: present
+      manage_dir: yes
+      key: "{{ lookup('file', 'files/id_rsa.pub') }}"
+      
+  - name: add ssh key sansa
+    authorized_key:
+      user: sansa
+      state: present
+      manage_dir: yes
+      key: "{{ lookup('file', 'files/id_rsa.pub') }}"
+
+  - name: add ssh key robert
+    authorized_key:
+      user: robert
+      state: present
+      manage_dir: yes
+      key: "{{ lookup('file', 'files/id_rsa.pub') }}"
